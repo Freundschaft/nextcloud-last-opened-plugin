@@ -1,0 +1,12 @@
+{
+  "name": "sea-watch/nextcloud-last-opened",
+  "description": "Nextcloud dashboard widget for recently opened files",
+  "type": "project",
+  "license": "AGPL-3.0-or-later",
+  "autoload": {
+    "psr-4": {
+      "OCA\\LastOpened\\": "lib/"
+    }
+  },
+  "require": {}
+}

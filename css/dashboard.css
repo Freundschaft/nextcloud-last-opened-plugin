@@ -1,0 +1,64 @@
+.last-opened-loading,
+.last-opened-empty {
+    color: var(--color-text-maxcontrast);
+    padding: 16px;
+}
+
+.last-opened-list {
+    list-style: none;
+    margin: 0;
+    padding: 4px 0;
+}
+
+.last-opened-item {
+    margin: 0;
+}
+
+.last-opened-link {
+    align-items: center;
+    color: var(--color-main-text);
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    min-height: 48px;
+    padding: 6px 12px;
+    text-decoration: none;
+}
+
+.last-opened-link:hover,
+.last-opened-link:focus {
+    background-color: var(--color-background-hover);
+}
+
+.last-opened-icon {
+    background-size: 20px;
+    display: block;
+    height: 28px;
+    width: 28px;
+}
+
+.last-opened-main {
+    min-width: 0;
+}
+
+.last-opened-name,
+.last-opened-path {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.last-opened-name {
+    font-weight: 600;
+}
+
+.last-opened-path,
+.last-opened-time {
+    color: var(--color-text-maxcontrast);
+    font-size: 0.85em;
+}
+
+.last-opened-time {
+    white-space: nowrap;
+}
