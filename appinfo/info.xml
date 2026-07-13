@@ -11,12 +11,15 @@ This app stores a small per-user file-open history in the existing Nextcloud dat
     <licence>AGPL-3.0-or-later</licence>
     <author mail="it@sea-watch.org">Sea-Watch</author>
     <namespace>LastOpened</namespace>
-    <category>dashboard</category>
-    <category>files</category>
-    <dependencies>
-        <nextcloud min-version="27" max-version="33"/>
-    </dependencies>
     <types>
         <filesystem/>
     </types>
+    <category>dashboard</category>
+    <category>files</category>
+    <website>https://github.com/Freundschaft/nextcloud-last-opened-plugin</website>
+    <bugs>https://github.com/Freundschaft/nextcloud-last-opened-plugin/issues</bugs>
+    <repository>https://github.com/Freundschaft/nextcloud-last-opened-plugin</repository>
+    <dependencies>
+        <nextcloud min-version="27" max-version="33"/>
+    </dependencies>
 </info>
