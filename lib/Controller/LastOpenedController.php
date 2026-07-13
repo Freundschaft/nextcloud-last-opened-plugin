@@ -7,6 +7,7 @@ namespace OCA\LastOpened\Controller;
 use OCA\LastOpened\AppInfo\Application;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\Files\File;
@@ -31,6 +32,7 @@ class LastOpenedController extends Controller {
         parent::__construct(Application::APP_ID, $request);
     }
 
+    #[NoAdminRequired]
     public function record(?string $path = null, ?int $fileId = null): DataResponse {
         $user = $this->userSession->getUser();
         if ($user === null) {
@@ -87,6 +89,7 @@ class LastOpenedController extends Controller {
         return new DataResponse(['status' => 'ok']);
     }
 
+    #[NoAdminRequired]
     public function index(int $limit = 15): DataResponse {
         $user = $this->userSession->getUser();
         if ($user === null) {

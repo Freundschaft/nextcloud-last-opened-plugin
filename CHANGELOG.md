@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.3 - 2026-07-13
+
+- Allow non-admin users to record and load their own recently opened files.
+
 ## 0.1.2 - 2026-07-13
 
 - Fix the Files-page guard for Nextcloud 33's `#content-vue` application shell.
