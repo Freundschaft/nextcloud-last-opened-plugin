@@ -1,7 +1,14 @@
 .last-opened-loading,
-.last-opened-empty {
+.last-opened-empty,
+.last-opened-error {
     color: var(--color-text-maxcontrast);
     padding: 16px;
+}
+
+.last-opened-error {
+    background-color: var(--color-error-hover);
+    color: var(--color-error-text);
+    padding-block: 10px;
 }
 
 .last-opened-list {
@@ -12,6 +19,7 @@
 
 .last-opened-item {
     margin: 0;
+    position: relative;
 }
 
 .last-opened-link {
@@ -21,13 +29,36 @@
     gap: 10px;
     grid-template-columns: 28px minmax(0, 1fr) auto;
     min-height: 48px;
-    padding: 6px 12px;
+    padding: 6px 52px 6px 12px;
     text-decoration: none;
 }
 
 .last-opened-link:hover,
-.last-opened-link:focus {
+.last-opened-link:focus,
+.last-opened-item:focus-within .last-opened-link {
     background-color: var(--color-background-hover);
+}
+
+button.last-opened-menu-trigger {
+    background-color: transparent;
+    border: 0;
+    height: 36px;
+    margin: 0;
+    min-height: 36px;
+    min-width: 36px;
+    opacity: 0;
+    padding: 0;
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+}
+
+.last-opened-item:hover button.last-opened-menu-trigger,
+button.last-opened-menu-trigger:focus,
+.last-opened-item:focus-within button.last-opened-menu-trigger {
+    opacity: 1;
 }
 
 .last-opened-icon {
@@ -61,4 +92,66 @@
 
 .last-opened-time {
     white-space: nowrap;
+}
+
+.last-opened-context-menu {
+    background-color: var(--color-main-background);
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    box-shadow: 0 4px 16px var(--color-box-shadow);
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    padding: 4px;
+    position: fixed;
+    z-index: 10000;
+}
+
+.last-opened-context-menu[hidden] {
+    display: none;
+}
+
+button.last-opened-menu-action {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 4px;
+    color: var(--color-main-text);
+    display: flex;
+    font-weight: normal;
+    gap: 10px;
+    justify-content: flex-start;
+    margin: 0;
+    min-height: 40px;
+    padding: 6px 10px;
+    text-align: left;
+    width: 100%;
+}
+
+button.last-opened-menu-action:hover,
+button.last-opened-menu-action:focus-visible {
+    background-color: var(--color-background-hover);
+}
+
+button.last-opened-menu-action--destructive {
+    color: var(--color-error);
+}
+
+.last-opened-menu-icon {
+    background-size: 20px;
+    flex: 0 0 24px;
+    height: 24px;
+    width: 24px;
+}
+
+@media (hover: none) {
+    button.last-opened-menu-trigger {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 420px) {
+    .last-opened-time {
+        display: none;
+    }
 }

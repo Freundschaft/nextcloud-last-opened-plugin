@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.0 - 2026-07-14
+
+- Add file actions to dashboard entries through right-click and an accessible menu button.
+- Add actions to open a file, show it in its folder, open its information sidebar, or remove only its history entry.
+
 ## 0.1.4 - 2026-07-13
 
 - Open dashboard entries through Nextcloud's canonical file route so supported files open directly in the Viewer.

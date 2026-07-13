@@ -107,18 +107,38 @@ class LastOpenedController extends Controller {
         $result = $query->executeQuery();
         $files = [];
         while ($row = $result->fetch()) {
+            $fileId = (int)$row['file_id'];
+            $path = (string)$row['path'];
             $files[] = [
-                'fileId' => (int)$row['file_id'],
-                'path' => $row['path'],
+                'fileId' => $fileId,
+                'path' => $path,
                 'name' => $row['name'],
                 'mimeType' => $row['mime_type'],
                 'openedAt' => (int)$row['opened_at'],
-                'url' => $this->buildFileUrl((int)$row['file_id']),
+                'url' => $this->buildFileUrl($fileId),
+                'folderUrl' => $this->buildFolderUrl($fileId),
+                'detailsUrl' => $this->buildDetailsUrl($fileId),
             ];
         }
         $result->closeCursor();
 
         return new DataResponse(['files' => $files]);
+    }
+
+    #[NoAdminRequired]
+    public function deleteEntry(int $fileId): DataResponse {
+        $user = $this->userSession->getUser();
+        if ($user === null) {
+            return new DataResponse(['message' => 'Authentication required'], Http::STATUS_UNAUTHORIZED);
+        }
+
+        if ($fileId <= 0) {
+            return new DataResponse(['message' => 'Invalid file reference'], Http::STATUS_BAD_REQUEST);
+        }
+
+        $this->deleteExistingEntry($user->getUID(), $fileId);
+
+        return new DataResponse(['status' => 'ok']);
     }
 
     private function normalizePath(string $path): string {
@@ -164,6 +184,21 @@ class LastOpenedController extends Controller {
     private function buildFileUrl(int $fileId): string {
         return $this->urlGenerator->linkToRoute('files.viewcontroller.showFile', [
             'fileid' => $fileId,
+        ]);
+    }
+
+    private function buildFolderUrl(int $fileId): string {
+        return $this->urlGenerator->linkToRoute('files.viewcontroller.showFile', [
+            'fileid' => $fileId,
+            'openfile' => 'false',
+        ]);
+    }
+
+    private function buildDetailsUrl(int $fileId): string {
+        return $this->urlGenerator->linkToRoute('files.viewcontroller.showFile', [
+            'fileid' => $fileId,
+            'opendetails' => 'true',
+            'openfile' => 'false',
         ]);
     }
 }

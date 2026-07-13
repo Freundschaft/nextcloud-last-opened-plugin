@@ -14,5 +14,11 @@ return [
             'url' => '/opened',
             'verb' => 'GET',
         ],
+        [
+            'name' => 'last_opened#deleteEntry',
+            'url' => '/opened/{fileId}',
+            'verb' => 'DELETE',
+            'requirements' => ['fileId' => '\\d+'],
+        ],
     ],
 ];
