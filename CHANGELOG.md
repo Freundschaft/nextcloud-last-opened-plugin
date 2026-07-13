@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.2 - 2026-07-13
+
+- Fix the Files-page guard for Nextcloud 33's `#content-vue` application shell.
+
 ## 0.1.1 - 2026-07-13
 
 - Fix file-open tracking in the Nextcloud 33 Files interface.

@@ -5,8 +5,8 @@
         return;
     }
 
-    const content = document.getElementById('content');
-    if (!content || !content.classList.contains('app-files')) {
+    const filesContent = document.querySelector('#content.app-files, #content-vue.app-files');
+    if (!filesContent) {
         return;
     }
 
