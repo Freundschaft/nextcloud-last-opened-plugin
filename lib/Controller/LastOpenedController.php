@@ -113,7 +113,7 @@ class LastOpenedController extends Controller {
                 'name' => $row['name'],
                 'mimeType' => $row['mime_type'],
                 'openedAt' => (int)$row['opened_at'],
-                'url' => $this->buildFileUrl((string)$row['path']),
+                'url' => $this->buildFileUrl((int)$row['file_id']),
             ];
         }
         $result->closeCursor();
@@ -161,17 +161,9 @@ class LastOpenedController extends Controller {
         $delete->executeStatement();
     }
 
-    private function buildFileUrl(string $path): string {
-        $dir = dirname($path);
-        if ($dir === '.') {
-            $dir = '/';
-        } else {
-            $dir = '/' . ltrim($dir, '/');
-        }
-
-        return $this->urlGenerator->linkToRoute('files.view.index', [
-            'dir' => $dir,
-            'scrollto' => basename($path),
+    private function buildFileUrl(int $fileId): string {
+        return $this->urlGenerator->linkToRoute('files.viewcontroller.showFile', [
+            'fileid' => $fileId,
         ]);
     }
 }

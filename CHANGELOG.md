@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4 - 2026-07-13
+
+- Open dashboard entries through Nextcloud's canonical file route so supported files open directly in the Viewer.
+
 ## 0.1.3 - 2026-07-13
 
 - Allow non-admin users to record and load their own recently opened files.
