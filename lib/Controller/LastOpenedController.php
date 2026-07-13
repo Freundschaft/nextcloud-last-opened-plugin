@@ -31,21 +31,35 @@ class LastOpenedController extends Controller {
         parent::__construct(Application::APP_ID, $request);
     }
 
-    public function record(string $path): DataResponse {
+    public function record(?string $path = null, ?int $fileId = null): DataResponse {
         $user = $this->userSession->getUser();
         if ($user === null) {
             return new DataResponse(['message' => 'Authentication required'], Http::STATUS_UNAUTHORIZED);
         }
 
-        $path = $this->normalizePath($path);
-        if ($path === '') {
-            return new DataResponse(['message' => 'Missing file path'], Http::STATUS_BAD_REQUEST);
-        }
+        $userFolder = $this->rootFolder->getUserFolder($user->getUID());
 
-        try {
-            $node = $this->rootFolder->getUserFolder($user->getUID())->get($path);
-        } catch (NotFoundException) {
-            return new DataResponse(['message' => 'File not found'], Http::STATUS_NOT_FOUND);
+        if ($fileId !== null && $fileId > 0) {
+            $nodes = $userFolder->getById($fileId);
+            $node = $nodes[0] ?? null;
+            if ($node === null) {
+                return new DataResponse(['message' => 'File not found'], Http::STATUS_NOT_FOUND);
+            }
+            $path = $this->normalizePath($userFolder->getRelativePath($node->getPath()) ?? '');
+            if ($path === '') {
+                return new DataResponse(['message' => 'File not found'], Http::STATUS_NOT_FOUND);
+            }
+        } else {
+            $path = $this->normalizePath($path ?? '');
+            if ($path === '') {
+                return new DataResponse(['message' => 'Missing file reference'], Http::STATUS_BAD_REQUEST);
+            }
+
+            try {
+                $node = $userFolder->get($path);
+            } catch (NotFoundException) {
+                return new DataResponse(['message' => 'File not found'], Http::STATUS_NOT_FOUND);
+            }
         }
 
         if (!$node instanceof File) {
@@ -53,14 +67,14 @@ class LastOpenedController extends Controller {
         }
 
         $now = time();
-        $fileId = (int)$node->getId();
-        $this->deleteExistingEntry($user->getUID(), $fileId);
+        $resolvedFileId = (int)$node->getId();
+        $this->deleteExistingEntry($user->getUID(), $resolvedFileId);
 
         $query = $this->db->getQueryBuilder();
         $query->insert(self::TABLE)
             ->values([
                 'user_id' => $query->createNamedParameter($user->getUID()),
-                'file_id' => $query->createNamedParameter($fileId, IQueryBuilder::PARAM_INT),
+                'file_id' => $query->createNamedParameter($resolvedFileId, IQueryBuilder::PARAM_INT),
                 'path' => $query->createNamedParameter($path),
                 'name' => $query->createNamedParameter($node->getName()),
                 'mime_type' => $query->createNamedParameter($node->getMimetype()),

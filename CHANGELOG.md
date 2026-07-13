@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.1 - 2026-07-13
+
+- Fix file-open tracking in the Nextcloud 33 Files interface.
+- Resolve modern Files entries by file ID so non-folder views are tracked correctly.
+- Keep tracking support for legacy Files table markup.
+- Preserve tracking requests when opening a file navigates away from the page.
+
 ## 0.1.0 - 2026-07-09
 
 - Initial release.

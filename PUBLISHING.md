@@ -13,11 +13,11 @@ Generated certificate files:
 
 Keep the private key secret. Do not commit it.
 
-## Publish version 0.1.0
+## Publish version 0.1.1
 
 1. Commit and push the release metadata.
-2. Tag the release as `v0.1.0` and create a GitHub release.
-3. Attach `dist/last_opened-0.1.0.tar.gz` to the GitHub release. Do not use
+2. Tag the release as `v0.1.1` and create a GitHub release.
+3. Attach `dist/last_opened-0.1.1.tar.gz` to the GitHub release. Do not use
    GitHub's automatically generated source archives because their top-level
    folder does not match the app id.
 4. Register `last_opened` at <https://apps.nextcloud.com/developer/apps/new>
@@ -28,8 +28,8 @@ Keep the private key secret. Do not commit it.
 5. Add the release at <https://apps.nextcloud.com/developer/apps/releases/new>
    using:
    - Download: the HTTPS URL of the attached
-     `last_opened-0.1.0.tar.gz` GitHub release asset
-   - Signature: contents of `dist/last_opened-0.1.0.tar.gz.sig`
+     `last_opened-0.1.1.tar.gz` GitHub release asset
+   - Signature: contents of `dist/last_opened-0.1.1.tar.gz.sig`
    - Nightly: disabled
 
 The release archive and its signature must always be regenerated together after
