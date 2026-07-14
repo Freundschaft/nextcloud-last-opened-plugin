@@ -199,13 +199,12 @@
             const path = document.createElement('span');
             path.className = 'last-opened-path';
             path.textContent = file.path;
-            main.append(name, path);
-
             const time = document.createElement('time');
             time.className = 'last-opened-time';
             time.dateTime = new Date(file.openedAt * 1000).toISOString();
             time.textContent = formatTime(file.openedAt);
-            link.append(icon, main, time);
+            main.append(name, path, time);
+            link.append(icon, main);
 
             const trigger = document.createElement('button');
             trigger.type = 'button';

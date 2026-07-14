@@ -7,7 +7,7 @@
     <description>Tracks files opened in the web files app and shows the user's most recently opened files on the Nextcloud dashboard.
 
 This app stores a small per-user file-open history in the existing Nextcloud database. The history is used only for the dashboard widget and is limited to the latest 100 files per user.</description>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
     <licence>AGPL-3.0-or-later</licence>
     <author mail="it@sea-watch.org">Sea-Watch</author>
     <namespace>LastOpened</namespace>

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1 - 2026-07-14
+
+- Move the last-opened timestamp below the file path so file names have more room in the standard dashboard widget width.
+
 ## 0.2.0 - 2026-07-14
 
 - Add file actions to dashboard entries through right-click and an accessible menu button.

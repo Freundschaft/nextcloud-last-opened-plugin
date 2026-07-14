@@ -27,8 +27,8 @@
     color: var(--color-main-text);
     display: grid;
     gap: 10px;
-    grid-template-columns: 28px minmax(0, 1fr) auto;
-    min-height: 48px;
+    grid-template-columns: 28px minmax(0, 1fr);
+    min-height: 64px;
     padding: 6px 52px 6px 12px;
     text-decoration: none;
 }
@@ -91,6 +91,7 @@ button.last-opened-menu-trigger:focus,
 }
 
 .last-opened-time {
+    display: block;
     white-space: nowrap;
 }
 
@@ -147,11 +148,5 @@ button.last-opened-menu-action--destructive {
 @media (hover: none) {
     button.last-opened-menu-trigger {
         opacity: 1;
-    }
-}
-
-@media (max-width: 420px) {
-    .last-opened-time {
-        display: none;
     }
 }
