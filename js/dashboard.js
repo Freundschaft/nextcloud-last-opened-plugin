@@ -232,6 +232,7 @@
     };
 
     OCA.Dashboard.register('last_opened', (element) => {
+        element.classList.add('last-opened-widget');
         let files = [];
 
         const contextMenu = createContextMenu(element, async (file) => {

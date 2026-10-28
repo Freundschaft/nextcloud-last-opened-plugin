@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3 - 2026-10-28
+
+- Keep long file lists inside the dashboard widget and scroll within its available height.
+
 ## 0.2.2 - 2026-10-28
 
 - Allow installation on Nextcloud 34 while retaining support for Nextcloud 27–33.
