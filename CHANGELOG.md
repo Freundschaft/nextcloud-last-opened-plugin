@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2 - 2026-10-28
+
+- Allow installation on Nextcloud 34 while retaining support for Nextcloud 27–33.
+
 ## 0.2.1 - 2026-07-14
 
 - Move the last-opened timestamp below the file path so file names have more room in the standard dashboard widget width.

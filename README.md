@@ -2,6 +2,8 @@
 
 Nextcloud app that records files opened from the web Files app and shows the user's most recently opened files as a dashboard widget.
 
+Supports Nextcloud 27–34. No JavaScript build step is required.
+
 ## What it tracks
 
 - A file is recorded when the user opens it from the Files web UI.
@@ -17,5 +19,3 @@ Place this directory in the Nextcloud `apps/` directory as `last_opened`, then e
 ```bash
 php occ app:enable last_opened
 ```
-
-No JavaScript build step is required.
